@@ -1,6 +1,6 @@
-import 'package:diagnose4me/root_page.dart';
+import 'package:diagnose4me/pages/root_page.dart';
 import 'package:flutter/material.dart';
-import 'authentication.dart';
+import 'services/authentication.dart';
 
 void main() => runApp(MyApp());
 

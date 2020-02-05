@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:diagnose4me/authentication.dart';
-import 'package:diagnose4me/home_page.dart';
-import 'package:diagnose4me/login_signup_page.dart';
+import 'package:diagnose4me/services/authentication.dart';
+import 'package:diagnose4me/pages/home_page.dart';
+import 'package:diagnose4me/pages/login_signup_page.dart';
 
 enum AuthStatus { NOT_DETERMINED, NOT_LOGGED_IN, LOGGED_IN }
 

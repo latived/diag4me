@@ -1,4 +1,4 @@
-import 'package:diagnose4me/authentication.dart';
+import 'package:diagnose4me/services/authentication.dart';
 import 'package:flutter/material.dart';
 
 class LoginSignUpPage extends StatefulWidget {
