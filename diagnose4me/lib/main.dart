@@ -31,7 +31,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       body: Stack(
         children: <Widget>[
          _showForm(),
-          showCircularProgress(),
+          _showCircularProgress(),
         ],
       ),
     );
@@ -45,17 +45,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     super.initState();
   }
 
-  Widget showCircularProgress() {
-    if (_isLoading) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    return Container(
-      height: 0.0,
-      width: 0.0,
-    );
-  }
 
   Widget showLogo() {
     return Hero(
@@ -186,6 +175,18 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     );
   }
 
+  Widget _showCircularProgress() {
+    if (_isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return Container(
+      height: 0.0,
+      width: 0.0,
+    );
+  }
+
   Widget _validateAndSubmit() {
     return null;
   }
@@ -198,7 +199,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   }
 
   Widget _resetForm() {
-    print('resetForm off right now');
     return null;
   }
 }
