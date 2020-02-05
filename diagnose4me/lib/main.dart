@@ -31,7 +31,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       body: Stack(
         children: <Widget>[
          _showForm(),
-          _showCircularProgress(),
+         _showCircularProgress(),
         ],
       ),
     );
@@ -118,7 +118,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               color: Colors.white,
             ),
           ),
-          onPressed: _validateAndSubmit,
+          //onPressed: _validateAndSubmit,
+          onPressed: _validateAndSave,
         ),
       ),
     );
@@ -187,8 +188,17 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     );
   }
 
-  Widget _validateAndSubmit() {
+  void _validateAndSubmit() {
     return null;
+  }
+
+  bool _validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
   }
 
   Widget _toggleFormMode() {
@@ -199,7 +209,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   }
 
   Widget _resetForm() {
-    return null;
+    _formKey.currentState.reset();
+    _errorMessage = "";
   }
 }
 
