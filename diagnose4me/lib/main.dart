@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class LoginSignUpPage extends StatelessWidget {
+class LoginSignUpPage extends StatefulWidget {
+  LoginSignUpPage({Key key})
+    : super(key: key);
+
+  @override
+  _LoginSignUpPageState createState() => _LoginSignUpPageState();
+
+}
+
+class _LoginSignUpPageState extends State<LoginSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
