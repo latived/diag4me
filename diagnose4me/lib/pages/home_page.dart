@@ -16,7 +16,16 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: Text('Hello!'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Hello!'),
+            RaisedButton(
+              child: Text('Logout!'),
+              onPressed: logoutCallback,
+            )
+          ],
+        )
       ),
     );
   }
