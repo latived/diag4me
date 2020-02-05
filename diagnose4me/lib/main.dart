@@ -13,13 +13,12 @@ class LoginSignUpPage extends StatefulWidget {
 
 class _LoginSignUpPageState extends State<LoginSignUpPage> {
 
-  var _isLoading = false;
-  var _isLoginForm = true;
+  bool _isLoading;
+  bool _isLoginForm;
 
-  var _errorMessage = "";
-
-  var _email;
-  var _password;
+  String _errorMessage;
+  String _email;
+  String _password;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -36,6 +35,14 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    _errorMessage = "";
+    _isLoginForm = true;
+    _isLoading = false;
+    super.initState();
   }
 
   Widget showCircularProgress() {
@@ -180,7 +187,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   }
 
   Widget _validateAndSubmit() {
-    print('login/validate off right now');
     return null;
   }
 
