@@ -1,16 +1,17 @@
+import 'package:diagnose4me/authentication.dart';
 import 'package:flutter/material.dart';
 
 class LoginSignUpPage extends StatefulWidget {
-  LoginSignUpPage({Key key})
-      : super(key: key);
+  LoginSignUpPage({this.auth, this.loginCallback});
+
+  final BaseAuth auth;
+  final VoidCallback loginCallback;
 
   @override
   _LoginSignUpPageState createState() => _LoginSignUpPageState();
-
 }
 
 class _LoginSignUpPageState extends State<LoginSignUpPage> {
-
   bool _isLoading;
   bool _isLoginForm;
 
@@ -43,7 +44,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     super.initState();
   }
 
-
   Widget showLogo() {
     return Hero(
       tag: 'hero',
@@ -70,8 +70,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
             icon: Icon(
               Icons.mail,
               color: Colors.grey,
-            )
-        ),
+            )),
         validator: (value) => value.isEmpty ? "Email can't be empty" : null,
         onSaved: (value) => _email = value.trim(),
       ),
@@ -90,8 +89,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
             icon: new Icon(
               Icons.lock,
               color: Colors.grey,
-            )
-        ),
+            )),
         validator: (value) => value.isEmpty ? "Password can't be empty" : null,
         onSaved: (value) => _password = value.trim(),
       ),
@@ -116,8 +114,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               color: Colors.white,
             ),
           ),
-          //onPressed: _validateAndSubmit,
-          onPressed: _validateAndSave,
+          onPressed: _validateAndSubmit,
         ),
       ),
     );
@@ -127,10 +124,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     return FlatButton(
       child: Text(
         _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-        style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w300
-        ),
+        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
       ),
       onPressed: _toggleFormMode,
     );
@@ -186,8 +180,37 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     );
   }
 
-  void _validateAndSubmit() {
-    return null;
+  void _validateAndSubmit() async {
+    setState(() {
+      _errorMessage = "";
+      _isLoading = true;
+    });
+    if (_validateAndSave()) {
+      String userId = "";
+      try {
+        if (_isLoginForm) {
+          userId = await widget.auth.signIn(_email, _password);
+          print('Signed in: $userId');
+        } else {
+          userId = await widget.auth.signUp(_email, _password);
+          print('Signed up user: $userId');
+        }
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (userId.length > 0 && userId != null && _isLoginForm) {
+          widget.loginCallback();
+        }
+      } catch (e) {
+        print('Error: $e');
+        setState(() {
+          _isLoading = false;
+          _errorMessage = e.message;
+          _formKey.currentState.reset();
+        });
+      }
+    }
   }
 
   bool _validateAndSave() {
@@ -199,14 +222,14 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     return false;
   }
 
-  Widget _toggleFormMode() {
+  void _toggleFormMode() {
     _resetForm();
     setState(() {
       _isLoginForm = !_isLoginForm;
     });
   }
 
-  Widget _resetForm() {
+  void _resetForm() {
     _formKey.currentState.reset();
     _errorMessage = "";
   }
