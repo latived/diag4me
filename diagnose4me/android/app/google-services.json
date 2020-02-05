@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "252549932362",
+    "firebase_url": "https://diag4me.firebaseio.com",
+    "project_id": "diag4me",
+    "storage_bucket": "diag4me.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252549932362:android:88c877aaf51c70df948db3",
+        "android_client_info": {
+          "package_name": "com.latived.diagnose4me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252549932362-od5hb745612l2j04ch4thof39mji7k5f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqErh7pwMcknXUHH3qEprznJUrzdObVVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252549932362-od5hb745612l2j04ch4thof39mji7k5f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
