@@ -27,7 +27,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Diagnose4Me'),
       ),
       body: Stack(
         children: <Widget>[
