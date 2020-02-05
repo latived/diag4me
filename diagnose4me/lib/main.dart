@@ -13,15 +13,32 @@ class LoginSignUpPage extends StatefulWidget {
 
 class _LoginSignUpPageState extends State<LoginSignUpPage> {
 
+  var _isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Login'),
       ),
-      body: Container(
-        child: Text('Hello!')
+      body: Stack(
+        children: <Widget>[
+          //showForm(),
+          showCircularProgress(),
+        ],
       ),
+    );
+  }
+
+  Widget showCircularProgress() {
+    if (_isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return Container(
+      height: 0.0,
+      width: 0.0,
     );
   }
 }
