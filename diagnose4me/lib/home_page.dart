@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
         title: Text('Diag4Me'),
       ),
       body: Container(
+        alignment: Alignment.center,
         child: Text('Hello!'),
       ),
     );
