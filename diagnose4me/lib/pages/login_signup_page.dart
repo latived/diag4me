@@ -60,7 +60,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
 
   Widget showEmailInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
       child: TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
@@ -132,14 +132,18 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
 
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
-      return Text(
-        _errorMessage,
-        style: TextStyle(
-          fontSize: 13.0,
-          color: Colors.red,
-          height: 1.0,
-          fontWeight: FontWeight.w300,
-        ),
+      return Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 25.0),
+          child: Text(
+            _errorMessage,
+            style: TextStyle(
+              fontSize: 13.0,
+              color: Colors.red,
+              height: 1.0,
+              fontWeight: FontWeight.w300,
+            ),
+          )
       );
     } else {
       return Container(
@@ -157,11 +161,11 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
           shrinkWrap: true,
           children: <Widget>[
             showLogo(),
+            showErrorMessage(),
             showEmailInput(),
             showPasswordInput(),
             showPrimaryButton(),
             showSecondaryButton(),
-            showErrorMessage(),
           ],
         ),
       ),
@@ -210,6 +214,10 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
           _formKey.currentState.reset();
         });
       }
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
