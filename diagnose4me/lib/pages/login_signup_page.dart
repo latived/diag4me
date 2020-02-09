@@ -133,8 +133,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
       return Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 25.0),
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(top: 25.0),
           child: Text(
             _errorMessage,
             style: TextStyle(
@@ -143,8 +143,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               height: 1.0,
               fontWeight: FontWeight.w300,
             ),
-          )
-      );
+          ));
     } else {
       return Container(
         height: 0.0,
