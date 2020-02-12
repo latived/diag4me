@@ -1,3 +1,4 @@
+import 'package:diagnose4me/pages/exam_detail_page.dart';
 import 'package:diagnose4me/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -26,60 +27,69 @@ class HomePage extends StatelessWidget {
         width: double.maxFinite,
         child: ListView.builder(
           itemBuilder: (context, position) {
-            return Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            return GestureDetector(
+                child: Column(
                   children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Padding(
-                          padding:
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding:
                               const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
-                          child: Text(
-                            sendersList[position],
-                            style: TextStyle(
-                                fontSize: 22.0, fontWeight: FontWeight.bold),
-                          ),
+                              child: Text(
+                                sendersList[position],
+                                style: TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
+                              child: Text(
+                                subjectList[position],
+                                style: TextStyle(fontSize: 18.0),
+                              ),
+                            ),
+                          ],
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
-                          child: Text(
-                            subjectList[position],
-                            style: TextStyle(fontSize: 18.0),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text(
+                                datesList[position],
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.star_border,
+                                  size: 35.0,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Text(
-                            datesList[position],
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.star_border,
-                              size: 35.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    Divider(
+                      height: 2.0,
+                      color: Colors.grey,
+                    )
                   ],
                 ),
-                Divider(
-                  height: 2.0,
-                  color: Colors.grey,
-                )
-              ],
+              onTap: () {
+                  final details = [sendersList[position], subjectList[position], datesList[position]];
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => ExameDetailPage(details: details,)
+                ));
+              },
             );
           },
           itemCount: sendersList.length,
@@ -101,4 +111,5 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
 }
