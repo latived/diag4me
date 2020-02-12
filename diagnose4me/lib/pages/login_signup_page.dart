@@ -121,13 +121,35 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   }
 
   Widget showSecondaryButton() {
+    if (_isLoginForm) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          FlatButton(
+            child: Text(
+              'Reset password',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+            ),
+            onPressed: _resetPassword,
+          ),
+          FlatButton(
+            child: Text(
+              'Create an account',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+            ),
+            onPressed: _toggleFormMode,
+          ),
+        ],
+      );
+    } else {
     return FlatButton(
-      child: Text(
-        _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
-      ),
-      onPressed: _toggleFormMode,
-    );
+    child: Text(
+          'Have an account? Sign in',
+          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+        ),
+        onPressed: _toggleFormMode,
+      );
+    }
   }
 
   Widget showErrorMessage() {
@@ -239,5 +261,37 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   void _resetForm() {
     _formKey.currentState.reset();
     _errorMessage = "";
+  }
+
+  void _resetPassword() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text("Digite seu email"),
+          content: TextFormField(
+            maxLines: 1,
+            keyboardType: TextInputType.emailAddress,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: 'Email',
+            ),
+            validator: (value) => value.isEmpty ? "Email can't be empty" : null,
+            onSaved: (value) => _email = value.trim(),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: new Text("Send it"),
+              onPressed: () {
+                //widget.auth.resetPassword(_email);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
